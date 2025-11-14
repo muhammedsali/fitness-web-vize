@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zwv9y4ZUpCM=",
+  "dgSpecHash": "KVXCupEemuI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\GymMembershipSystem.csproj",
+  "projectFilePath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\fitness-web-vize\\GymMembershipSystem.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Muhammed\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.9\\microsoft.aspnetcore.authorization.9.0.9.nupkg.sha512",
     "C:\\Users\\Muhammed\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.9\\microsoft.aspnetcore.components.9.0.9.nupkg.sha512",

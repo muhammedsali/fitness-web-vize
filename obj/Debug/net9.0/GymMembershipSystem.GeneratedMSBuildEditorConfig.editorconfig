@@ -13,73 +13,73 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = GymMembershipSystem
 build_property.RootNamespace = GymMembershipSystem
-build_property.ProjectDir = C:\Users\Muhammed\Projeler\ileriwebvize\
+build_property.ProjectDir = C:\Users\Muhammed\Projeler\ileriwebvize\fitness-web-vize\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Muhammed\Projeler\ileriwebvize
+build_property.MSBuildProjectDirectory = C:\Users\Muhammed\Projeler\ileriwebvize\fitness-web-vize
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/App.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/_Imports.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Components/MemberRegistrationForm.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Components/MemberRegistrationForm.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNZW1iZXJSZWdpc3RyYXRpb25Gb3JtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-xm5hvr9qqg
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Components/MembershipCard.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Components/MembershipCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNZW1iZXJzaGlwQ2FyZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-ei78a54uwa
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Components/MembershipDetails.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Components/MembershipDetails.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNZW1iZXJzaGlwRGV0YWlscy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-dy09c13adz
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Components/MembershipList.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Components/MembershipList.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNZW1iZXJzaGlwTGlzdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-a7djke23wr
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Components/MembershipStatus.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Components/MembershipStatus.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNZW1iZXJzaGlwU3RhdHVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-dew9683pes
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Layout/MainLayout.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-qhc8dzw6ma
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Layout/NavMenu.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-xo3wl4tive
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/Dashboard.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/Dashboard.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGFzaGJvYXJkLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-ylsb7tvb3j
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/Home.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-mp75nldv8o
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/Login.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-xwgisf02uk
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/MembershipRegister.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/MembershipRegister.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyc2hpcFJlZ2lzdGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-oimflbd4xk
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/Memberships.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/Memberships.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWVtYmVyc2hpcHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-kwdxwtozbp
 
-[C:/Users/Muhammed/Projeler/ileriwebvize/Pages/Register.razor]
+[C:/Users/Muhammed/Projeler/ileriwebvize/fitness-web-vize/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-u7510diyrj

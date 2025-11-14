@@ -1762,11 +1762,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\GymMembershipSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\fitness-web-vize\\GymMembershipSystem.csproj",
       "projectName": "GymMembershipSystem",
-      "projectPath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\GymMembershipSystem.csproj",
+      "projectPath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\fitness-web-vize\\GymMembershipSystem.csproj",
       "packagesPath": "C:\\Users\\Muhammed\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\obj\\",
+      "outputPath": "C:\\Users\\Muhammed\\Projeler\\ileriwebvize\\fitness-web-vize\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Muhammed\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GymMembershipSystem",
   "resources": {
-    "hash": "sha256-9EVF1zV5AFzJ57t1beMtawnfWBBTf8PdyPahkgFR/LI=",
+    "hash": "sha256-dFs5N4iPC7ts4mY9LKwTPD9ZkK03xfco6EEREUI/wpM=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.z6jo10m0rd.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.65wbz7t8mt.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -201,8 +201,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "GymMembershipSystem.i4wl1w7qoc.wasm": "GymMembershipSystem.wasm",
-      "GymMembershipSystem.4ksl3ercz7.pdb": "GymMembershipSystem.pdb"
+      "GymMembershipSystem.f9lfb1oujm.wasm": "GymMembershipSystem.wasm",
+      "GymMembershipSystem.icwvjaqca2.pdb": "GymMembershipSystem.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.9ih887ebfz.js": "sha256-oS7IRiQoVt9ThQ7Y2UM3XoeY0JqPD02cg9IvRdufn2w="
@@ -412,10 +412,10 @@
       "WindowsBase.vy2l5u79y6.wasm": "sha256-ufB9Mo5joMyUs3DzXWWBFFIZNEVrt6h9N5stYB6Oln4=",
       "mscorlib.xd6mv31d55.wasm": "sha256-1YSLR2eZt3ceALFV//vZUF2AloxVil3VlrW1zZYPSEI=",
       "netstandard.kaml52uspo.wasm": "sha256-HLEwBpLfzKw2/zGSVzHzFJxznCkt/WIjahrziiMrOpA=",
-      "GymMembershipSystem.i4wl1w7qoc.wasm": "sha256-4qbBXpPX+LoTcYOEPTnyg7MtmvsfnjPwqZTT/CyTStw="
+      "GymMembershipSystem.f9lfb1oujm.wasm": "sha256-Y6gPmuxgaZhz0ziTRZAmTnrJhSgrfpaQGDNxXZYKBEk="
     },
     "pdb": {
-      "GymMembershipSystem.4ksl3ercz7.pdb": "sha256-1A4SK4Nz05Ac1VuG+qcXz3Gp9chQHN+CgZUuTsu5AMs="
+      "GymMembershipSystem.icwvjaqca2.pdb": "sha256-grCsphdDVl1o6a0fxObmrW0USqq18FnVUBAXk7veqOA="
     }
   },
   "cacheBootResources": true,
