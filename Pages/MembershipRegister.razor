@@ -1,0 +1,91 @@
+@page "/memberships/{MembershipId}/register"
+@inject IMembershipService MembershipService
+@inject NavigationManager Navigation
+@inject IAuthService AuthService
+
+<PageTitle>Üyelik Kaydı</PageTitle>
+
+<div class="register-page">
+    @if (!isAuthenticated)
+    {
+        <div class="auth-required">
+            <h2>Giriş Gerekli</h2>
+            <p>Üyelik kaydı yapmak için önce giriş yapmalısınız.</p>
+            <div class="auth-actions">
+                <a href="/login" class="btn-primary">Giriş Yap</a>
+                <a href="/register" class="btn-secondary">Üye Ol</a>
+            </div>
+        </div>
+    }
+    else if (membership == null)
+    {
+        <div class="loading">Yükleniyor...</div>
+    }
+    else if (completedRegistration != null)
+    {
+        <div class="success-message">
+            <div class="success-icon">✓</div>
+            <h2>Kayıt Başarılı!</h2>
+            <p>Üyelik kodunuz: <strong>@completedRegistration.MembershipCode</strong></p>
+            <p>Dashboard'a yönlendiriliyorsunuz...</p>
+        </div>
+    }
+    else
+    {
+        <div class="register-container">
+            <div class="register-left">
+                <MembershipDetails Membership="membership" />
+            </div>
+            <div class="register-right">
+                <MemberRegistrationForm 
+                    MembershipId="@MembershipId" 
+                    OnRegistrationComplete="HandleRegistrationComplete" />
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string MembershipId { get; set; } = "";
+
+    private Membership? membership;
+    private MemberInfo? completedRegistration;
+    private bool isAuthenticated = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isAuthenticated = await AuthService.IsAuthenticatedAsync();
+        
+        if (isAuthenticated)
+        {
+            Console.WriteLine($"MembershipRegister: MembershipId = '{MembershipId}'");
+            if (string.IsNullOrEmpty(MembershipId))
+            {
+                Console.WriteLine("HATA: MembershipId boş!");
+                Navigation.NavigateTo("/memberships");
+                return;
+            }
+            
+            membership = await MembershipService.GetMembershipByIdAsync(MembershipId);
+            if (membership == null)
+            {
+                Console.WriteLine($"HATA: Membership bulunamadı! ID: '{MembershipId}'");
+                Navigation.NavigateTo("/memberships");
+            }
+            else
+            {
+                Console.WriteLine($"Membership bulundu: {membership.Name}");
+            }
+        }
+    }
+
+    private async Task HandleRegistrationComplete(MemberInfo memberInfo)
+    {
+        completedRegistration = memberInfo;
+        StateHasChanged();
+        await Task.Delay(2000); // Kısa bir gecikme
+        Navigation.NavigateTo("/dashboard");
+    }
+}
+

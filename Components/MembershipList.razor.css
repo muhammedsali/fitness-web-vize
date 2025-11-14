@@ -1,0 +1,25 @@
+.membership-list {
+    padding: 2rem 0;
+}
+
+.loading, .no-memberships {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.membership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .membership-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+

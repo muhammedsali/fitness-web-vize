@@ -1,0 +1,66 @@
+SPOR SALONU ÜYELİK TAKİP SİSTEMİ
+=====================================
+
+PROJE ÜYELERİ
+-------------
+1. Ahmet Bera Hasanoğlu - 1220505041
+2. Cem Güzel - 1220505005
+3. Muhammed Sali - 1220505024
+4. Muhammed Enes Cansabuncu - 1210505801
+5. Serhat Serçe - 1210505045
+
+GÖREV DAĞILIMI
+--------------
+Bu proje, tüm ekip üyelerinin işbirliği ile geliştirilmiştir. 
+Aşağıdaki görevler ekip üyeleri arasında paylaşılarak gerçekleştirilmiştir:
+
+1. JSON'dan Veri Okuma ve Servis Mimarisi
+   - Tüm ekip üyeleri: MembershipService ve IMembershipService implementasyonu
+   - memberships.json dosyasının oluşturulması ve yapılandırılması
+
+2. Bileşen Yapısı ve Veri Akışı
+   - Tüm ekip üyeleri: MembershipList, MembershipCard, MembershipDetails bileşenleri
+   - MemberRegistrationForm ve MembershipStatus bileşenleri
+   - [Parameter] ve EventCallback kullanımı
+
+3. Üyelik Oluşturma ve Yönetim Mantığı
+   - Tüm ekip üyeleri: Üyelik kayıt formu, dinamik fiyat hesaplama
+   - Üyelik kodu üretme algoritması (GYM-2025-XXX)
+   - Form geçerliliği ve durum izleme mekanizmaları
+
+4. Form Doğrulama ve Kullanıcı Bilgileri
+   - Tüm ekip üyeleri: EditForm, DataAnnotationsValidator implementasyonu
+   - ValidationMessage ve ValidationSummary kullanımı
+   - [Required], [EmailAddress], [StringLength], [RegularExpression] attribute'ları
+
+5. Durum Yönetimi (State Management)
+   - Tüm ekip üyeleri: localStorage kullanımı ile veri saklama
+   - MemberService implementasyonu
+   - Kullanıcı bazlı veri yönetimi
+
+6. Tasarım ve Scoped CSS Uygulaması
+   - Tüm ekip üyeleri: Tüm bileşenler için Scoped CSS dosyaları
+   - Responsive tasarım ve mobil uyumluluk
+   - Modern UI/UX tasarımı ve animasyonlar
+
+7. Ekstra Özellikler
+   - Giriş/Kayıt sistemi (AuthService)
+   - Kullanıcı oturum yönetimi
+   - Ana sayfa scroll indicator
+   - Modern fitness temalı tasarım
+
+PROJE AÇIKLAMASI
+----------------
+Bu proje, Blazor WebAssembly teknolojisi kullanılarak geliştirilmiş bir spor salonu 
+üyelik takip sistemidir. Kullanıcılar üyelik planlarını görüntüleyebilir, üyelik 
+oluşturabilir ve üyelik durumlarını takip edebilirler.
+
+Teknolojiler:
+- Blazor WebAssembly
+- C# .NET
+- JavaScript Interop
+- localStorage
+- Bootstrap CSS Framework
+
+Proje Tarihi: 2025
+

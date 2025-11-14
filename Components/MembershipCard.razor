@@ -1,0 +1,36 @@
+<div class="membership-card">
+    <div class="membership-header">
+        <h3>@Membership.Name</h3>
+        <div class="price">@Membership.Price.ToString("C")</div>
+    </div>
+    <div class="membership-duration">
+        <span class="duration-label">Süre:</span>
+        <span class="duration-value">@Membership.DurationDays gün</span>
+    </div>
+    <div class="membership-features">
+        <h4>Özellikler:</h4>
+        <ul>
+            @foreach (var feature in Membership.Features)
+            {
+                <li>@feature</li>
+            }
+        </ul>
+    </div>
+    <button class="btn-select" @onclick="HandleClick">
+        Satın Al
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public Membership Membership { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<Membership> OnSelect { get; set; }
+
+    private async Task HandleClick()
+    {
+        await OnSelect.InvokeAsync(Membership);
+    }
+}
+

@@ -1,0 +1,179 @@
+@inject IMembershipService MembershipService
+@inject IMemberService MemberService
+@inject NavigationManager Navigation
+@inject IAuthService AuthService
+
+@if (!isSubmitted)
+{
+<EditForm Model="registration" OnValidSubmit="HandleSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary class="validation-summary" />
+    
+    
+    <div class="registration-form">
+        <h2>Üyelik Kayıt Formu</h2>
+        
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>HATA:</strong> @errorMessage
+            </div>
+        }
+        
+        <div class="form-group">
+            <label for="fullname">Ad Soyad <span class="required">*</span></label>
+            <InputText id="fullname" @bind-Value="registration.FullName" class="form-control" />
+            <ValidationMessage For="@(() => registration.FullName)" />
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-posta <span class="required">*</span></label>
+            <InputText id="email" @bind-Value="registration.Email" class="form-control" type="email" />
+            <ValidationMessage For="@(() => registration.Email)" />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefon <span class="required">*</span></label>
+            <InputText id="phone" @bind-Value="registration.Phone" class="form-control" type="tel" />
+            <ValidationMessage For="@(() => registration.Phone)" />
+        </div>
+
+        <div class="form-group">
+            <label for="tckimlik">TC Kimlik No <span class="required">*</span></label>
+            <InputText id="tckimlik" @bind-Value="registration.TcKimlikNo" class="form-control" maxlength="11" />
+            <ValidationMessage For="@(() => registration.TcKimlikNo)" />
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-submit" disabled="@isSubmitting">
+                @if (isSubmitting)
+                {
+                    <span>İşleniyor...</span>
+                }
+                else
+                {
+                    <span>Kayıt Ol</span>
+                }
+            </button>
+            <button type="button" class="btn-cancel" @onclick="HandleCancel">İptal</button>
+        </div>
+    </div>
+</EditForm>
+}
+else
+{
+    <div class="submitting-message">
+        <div class="spinner"></div>
+        <p>Kayıt işlemi tamamlanıyor...</p>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string MembershipId { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<MemberInfo> OnRegistrationComplete { get; set; }
+
+    private MemberRegistration registration = new();
+    private bool isSubmitting = false;
+    private bool isSubmitted = false;
+    private string? errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        registration.MembershipId = MembershipId;
+        
+        // Giriş yapılmış kullanıcının bilgilerini formu otomatik doldur
+        var currentUser = await AuthService.GetCurrentUserAsync();
+        if (currentUser != null)
+        {
+            registration.FullName = currentUser.FullName;
+            registration.Email = currentUser.Email;
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        errorMessage = null;
+        isSubmitting = true;
+        StateHasChanged();
+        
+        try
+        {
+            var membership = await MembershipService.GetMembershipByIdAsync(MembershipId);
+            if (membership == null)
+            {
+                errorMessage = $"Üyelik planı bulunamadı! (ID: {MembershipId})";
+                isSubmitting = false;
+                StateHasChanged();
+                return;
+            }
+
+            var membershipCode = GenerateMembershipCode();
+            var startDate = DateTime.Now;
+            var endDate = startDate.AddDays(membership.DurationDays);
+
+            var memberInfo = new MemberInfo
+            {
+                MembershipCode = membershipCode,
+                FullName = registration.FullName,
+                Email = registration.Email,
+                Phone = registration.Phone,
+                TcKimlikNo = registration.TcKimlikNo,
+                MembershipId = membership.Id,
+                MembershipName = membership.Name,
+                StartDate = startDate,
+                EndDate = endDate,
+                Price = membership.Price
+            };
+            
+            await MemberService.SaveMemberInfoAsync(memberInfo);
+            
+            // Kayıt doğrulaması
+            var saved = await MemberService.GetMemberInfoAsync();
+            if (saved == null)
+            {
+                errorMessage = "Kayıt yapıldı ancak localStorage'dan okunamadı! localStorage çalışmıyor olabilir.";
+                isSubmitting = false;
+                isSubmitted = false;
+                StateHasChanged();
+                return;
+            }
+            
+            isSubmitted = true;
+            isSubmitting = false;
+            StateHasChanged();
+            
+            await OnRegistrationComplete.InvokeAsync(memberInfo);
+        }
+        catch (Exception ex)
+        {
+            isSubmitting = false;
+            isSubmitted = false;
+            errorMessage = $"Kayıt işlemi sırasında bir hata oluştu: {ex.Message}";
+            StateHasChanged();
+            Console.WriteLine($"Hata: {ex.Message}");
+            Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+        }
+    }
+
+    private void HandleInvalidSubmit(EditContext editContext)
+    {
+        errorMessage = "Lütfen tüm zorunlu alanları doğru şekilde doldurun.";
+        StateHasChanged();
+    }
+
+    private void HandleCancel()
+    {
+        Navigation.NavigateTo("/memberships");
+    }
+
+    private string GenerateMembershipCode()
+    {
+        var random = new Random();
+        var number = random.Next(100, 999);
+        return $"GYM-{DateTime.Now.Year}-{number}";
+    }
+}
+

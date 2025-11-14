@@ -1,0 +1,88 @@
+.membership-details {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    border-top: 4px solid #3b82f6;
+}
+
+.details-header {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.details-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 2rem;
+}
+
+.details-price {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.details-info {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.info-value {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.details-features {
+    margin-top: 1.5rem;
+}
+
+.details-features h3 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.details-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.details-features li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.details-features li::before {
+    content: "💪";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+

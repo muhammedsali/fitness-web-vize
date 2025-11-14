@@ -1,0 +1,78 @@
+@page "/dashboard"
+@inject IMemberService MemberService
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Dashboard</PageTitle>
+
+<div class="dashboard-page">
+    <h1>Üyelik Dashboard</h1>
+    
+    @if (isLoading)
+    {
+        <div class="loading">Yükleniyor...</div>
+    }
+    else if (memberInfo == null)
+    {
+        <div class="no-membership">
+            <h2>Aktif Üyeliğiniz Bulunmamaktadır</h2>
+            <p>Üyelik planlarını görüntüleyip kayıt olabilirsiniz.</p>
+            <a href="/memberships" class="btn-primary">Üyelik Planlarını Görüntüle</a>
+        </div>
+    }
+    else
+    {
+        <div class="dashboard-container">
+            <div class="user-info-section">
+                <h2>Kullanıcı Bilgileri</h2>
+                <div class="user-info-card">
+                    <div class="info-row">
+                        <span class="info-label">Ad Soyad:</span>
+                        <span class="info-value">@memberInfo.FullName</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">E-posta:</span>
+                        <span class="info-value">@memberInfo.Email</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Telefon:</span>
+                        <span class="info-value">@memberInfo.Phone</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">TC Kimlik No:</span>
+                        <span class="info-value">@memberInfo.TcKimlikNo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="membership-status-section">
+                <MembershipStatus MemberInfo="memberInfo" />
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private MemberInfo? memberInfo;
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Giriş kontrolü
+        var isAuthenticated = await AuthService.IsAuthenticatedAsync();
+        if (!isAuthenticated)
+        {
+            Navigation.NavigateTo("/login");
+            return;
+        }
+
+        var currentUser = await AuthService.GetCurrentUserAsync();
+        Console.WriteLine($"Dashboard: Kullanıcı: {(currentUser?.Email ?? "null")} (ID: {currentUser?.Id ?? "null"})");
+        Console.WriteLine("Dashboard: MemberInfo yükleniyor...");
+        memberInfo = await MemberService.GetMemberInfoAsync();
+        Console.WriteLine($"Dashboard: MemberInfo = {(memberInfo == null ? "null" : memberInfo.MembershipCode)}");
+        isLoading = false;
+        StateHasChanged();
+    }
+}
+

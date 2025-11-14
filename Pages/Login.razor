@@ -1,0 +1,85 @@
+@page "/login"
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+
+<PageTitle>Giriş Yap</PageTitle>
+
+<div class="auth-page">
+    <div class="auth-container">
+        <h1>Giriş Yap</h1>
+        
+        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+            <DataAnnotationsValidator />
+            <ValidationSummary class="validation-summary" />
+            
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="alert alert-danger" role="alert">@errorMessage</div>
+            }
+            
+            <div class="form-group">
+                <label for="email">E-posta <span class="required">*</span></label>
+                <InputText id="email" @bind-Value="loginModel.Email" class="form-control" type="email" />
+                <ValidationMessage For="@(() => loginModel.Email)" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Şifre <span class="required">*</span></label>
+                <InputText id="password" @bind-Value="loginModel.Password" class="form-control" type="password" />
+                <ValidationMessage For="@(() => loginModel.Password)" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" disabled="@isSubmitting">
+                    @if (isSubmitting)
+                    {
+                        <span>Giriş yapılıyor...</span>
+                    }
+                    else
+                    {
+                        <span>Giriş Yap</span>
+                    }
+                </button>
+            </div>
+        </EditForm>
+
+        <div class="auth-footer">
+            <p>Hesabınız yok mu? <a href="/register">Üye Ol</a></p>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+    private bool isSubmitting = false;
+    private string? errorMessage;
+
+    private async Task HandleLogin()
+    {
+        errorMessage = null;
+        isSubmitting = true;
+        StateHasChanged();
+
+        try
+        {
+            var user = await AuthService.LoginAsync(loginModel);
+            if (user != null)
+            {
+                Navigation.NavigateTo("/dashboard", forceLoad: true);
+            }
+            else
+            {
+                errorMessage = "E-posta veya şifre hatalı!";
+                isSubmitting = false;
+                StateHasChanged();
+            }
+        }
+        catch
+        {
+            errorMessage = "Giriş yapılırken bir hata oluştu.";
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+}
+

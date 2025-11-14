@@ -1,0 +1,20 @@
+@page "/memberships"
+
+<PageTitle>Üyelik Planları</PageTitle>
+
+<div class="memberships-page">
+    <h1>Üyelik Planları</h1>
+    <p class="page-description">Size uygun üyelik planını seçin ve hemen başlayın!</p>
+    
+    <MembershipList OnMembershipSelected="HandleMembershipSelected" />
+</div>
+
+@code {
+    [Inject] private NavigationManager Navigation { get; set; } = default!;
+
+    private void HandleMembershipSelected(Membership membership)
+    {
+        Navigation.NavigateTo($"/memberships/{membership.Id}/register");
+    }
+}
+

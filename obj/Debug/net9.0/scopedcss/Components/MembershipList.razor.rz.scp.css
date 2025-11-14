@@ -1,0 +1,25 @@
+.membership-list[b-a7djke23wr] {
+    padding: 2rem 0;
+}
+
+.loading[b-a7djke23wr], .no-memberships[b-a7djke23wr] {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.membership-grid[b-a7djke23wr] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .membership-grid[b-a7djke23wr] {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+

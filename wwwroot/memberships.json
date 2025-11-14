@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "name": "Aylık Üyelik",
+    "price": 450,
+    "durationDays": 30,
+    "features": ["Fitness Bölümü", "Ağırlık Bölümü"]
+  },
+  {
+    "id": "2",
+    "name": "6 Aylık Üyelik",
+    "price": 2300,
+    "durationDays": 180,
+    "features": ["Fitness", "Ağırlık", "Grup Dersleri"]
+  },
+  {
+    "id": "3",
+    "name": "Premium Yıllık Üyelik",
+    "price": 4500,
+    "durationDays": 365,
+    "features": ["Tüm Alanlar", "Sauna", "Kişisel Eğitmen"]
+  }
+]
+

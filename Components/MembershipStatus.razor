@@ -1,0 +1,124 @@
+@inject IMemberService MemberService
+@inject NavigationManager Navigation
+
+@if (memberInfo != null)
+{
+    <div class="membership-status">
+        <div class="status-header">
+            <h2>Üyelik Durumu</h2>
+            <div class="membership-code">Üyelik Kodu: <strong>@memberInfo.MembershipCode</strong></div>
+        </div>
+
+        <div class="status-info">
+            <div class="info-card">
+                <div class="info-label">Üyelik Planı</div>
+                <div class="info-value">@memberInfo.MembershipName</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Başlangıç Tarihi</div>
+                <div class="info-value">@memberInfo.StartDate.ToString("dd.MM.yyyy")</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Bitiş Tarihi</div>
+                <div class="info-value">@memberInfo.EndDate.ToString("dd.MM.yyyy")</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Kalan Gün</div>
+                <div class="info-value @(remainingDays <= 7 ? "warning" : "")">
+                    @remainingDays gün
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown-section">
+            <h3>Kalan Süre</h3>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value">@timeRemaining.Days</div>
+                    <div class="countdown-label">Gün</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value">@timeRemaining.Hours</div>
+                    <div class="countdown-label">Saat</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value">@timeRemaining.Minutes</div>
+                    <div class="countdown-label">Dakika</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-actions">
+            <button class="btn-renew" @onclick="HandleRenew">
+                Üyeliği Yenile
+            </button>
+        </div>
+    </div>
+}
+else
+{
+    <div class="no-membership">
+        <p>Aktif üyeliğiniz bulunmamaktadır.</p>
+        <a href="/memberships" class="btn-primary">Üyelik Planlarını Görüntüle</a>
+    </div>
+}
+
+@implements IDisposable
+
+@code {
+    [Parameter]
+    public MemberInfo? MemberInfo { get; set; }
+
+    private MemberInfo? memberInfo;
+    private TimeSpan timeRemaining;
+    private int remainingDays;
+    private System.Threading.Timer? timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (MemberInfo != null)
+        {
+            memberInfo = MemberInfo;
+        }
+        else
+        {
+            memberInfo = await MemberService.GetMemberInfoAsync();
+        }
+
+        if (memberInfo != null)
+        {
+            UpdateCountdown();
+            timer = new System.Threading.Timer(_ => InvokeAsync(UpdateCountdown), null, TimeSpan.Zero, TimeSpan.FromSeconds(60));
+        }
+    }
+
+    private void UpdateCountdown()
+    {
+        if (memberInfo != null)
+        {
+            var now = DateTime.Now;
+            if (now < memberInfo.EndDate)
+            {
+                timeRemaining = memberInfo.EndDate - now;
+                remainingDays = (int)timeRemaining.TotalDays;
+            }
+            else
+            {
+                timeRemaining = TimeSpan.Zero;
+                remainingDays = 0;
+            }
+            StateHasChanged();
+        }
+    }
+
+    private void HandleRenew()
+    {
+        Navigation.NavigateTo("/memberships");
+    }
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+}
+

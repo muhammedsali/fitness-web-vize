@@ -1,0 +1,151 @@
+﻿@page "/"
+@inject NavigationManager Navigation
+@inject IAuthService AuthService
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+<PageTitle>Ana Sayfa - Spor Salonu</PageTitle>
+
+<div class="home-page">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="highlight">Fitness</span> Yolculuğunuza<br/>
+                <span class="highlight">Bugün</span> Başlayın!
+            </h1>
+            <p class="hero-description">
+                Profesyonel ekipmanlar, uzman eğitmenler ve modern tesislerle hedeflerinize ulaşın. 
+                Size özel üyelik planlarımızla fitness yolculuğunuzu başlatın.
+            </p>
+            <div class="hero-actions">
+                <a href="/memberships" class="btn-primary">
+                    <span class="btn-icon">💪</span>
+                    Üyelik Planlarını Görüntüle
+                </a>
+                @if (!isAuthenticated)
+                {
+                    <a href="/login" class="btn-secondary">
+                        <span class="btn-icon">🔐</span>
+                        Giriş Yap
+                    </a>
+                }
+                else
+                {
+                    <a href="/dashboard" class="btn-secondary">
+                        <span class="btn-icon">📊</span>
+                        Dashboard
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="fitness-icon">💪</div>
+        </div>
+        <div class="scroll-indicator" @onclick="ScrollToStats">
+            <div class="scroll-text">Aşağı Kaydır</div>
+            <div class="scroll-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section" id="stats-section">
+        <div class="stat-card">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Aktif Üye</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Açık Salon</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Ekipman</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Uzman Eğitmen</div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section">
+        <h2 class="section-title">Neden Bizi Seçmelisiniz?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏋️</div>
+                <h3>Modern Ekipmanlar</h3>
+                <p>En son teknoloji fitness ekipmanları ile antrenman yapın</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>Uzman Eğitmenler</h3>
+                <p>Deneyimli ve sertifikalı eğitmenlerimizle hedeflerinize ulaşın</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3>Esnek Planlar</h3>
+                <p>Aylık, 6 aylık ve yıllık üyelik seçenekleri ile size uygun planı seçin</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Kolay Yönetim</h3>
+                <p>Üyelik durumunuzu ve kalan sürenizi kolayca takip edin</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚿</div>
+                <h3>Modern Tesisler</h3>
+                <p>Temiz ve ferah ortamda rahatça antrenman yapın</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>7/24 Erişim</h3>
+                <p>Haftanın her günü, günün her saati spor salonuna erişim</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="cta-content">
+            <h2>Hemen Başlayın!</h2>
+            <p>Fitness yolculuğunuz için doğru adımı atın. Size uygun üyelik planını seçin ve hemen başlayın.</p>
+            <a href="/memberships" class="btn-cta">Üyelik Planlarını İncele</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isAuthenticated = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CheckAuthStatus();
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        await CheckAuthStatus();
+        StateHasChanged();
+    }
+
+    private async Task CheckAuthStatus()
+    {
+        isAuthenticated = await AuthService.IsAuthenticatedAsync();
+    }
+
+    private async Task ScrollToStats()
+    {
+        await JSRuntime.InvokeVoidAsync("scrollToElement", "stats-section");
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+}

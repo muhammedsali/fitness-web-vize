@@ -1,0 +1,28 @@
+.memberships-page {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    min-height: calc(100vh - 200px);
+}
+
+.memberships-page h1 {
+    text-align: center;
+    color: #1a1a2e;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-description {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    font-weight: 500;
+}
+

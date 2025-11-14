@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spor Salonu Üyelik Takip Sistemi</title>
+    <base href="/" />
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="GymMembershipSystem.styles.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        // WebSocket hot reload hatalarını gizle (geliştirme ortamında normal)
+        window.addEventListener('error', function(e) {
+            if (e.message && e.message.includes('WebSocket connection')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // Console'da WebSocket hatalarını filtrele
+        const originalError = console.error;
+        console.error = function(...args) {
+            const message = args.join(' ');
+            if (message.includes('WebSocket connection') && message.includes('aspnetcore-browser-refresh')) {
+                return; // Bu hatayı gösterme
+            }
+            originalError.apply(console, args);
+        };
+        
+        // Smooth scroll fonksiyonu
+        window.scrollToElement = function(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        };
+    </script>
+</body>
+
+</html>

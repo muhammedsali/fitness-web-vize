@@ -1,0 +1,39 @@
+@inject IMembershipService MembershipService
+
+<div class="membership-list">
+    @if (memberships == null)
+    {
+        <div class="loading">Yükleniyor...</div>
+    }
+    else if (!memberships.Any())
+    {
+        <div class="no-memberships">Üyelik planı bulunamadı.</div>
+    }
+    else
+    {
+        <div class="membership-grid">
+            @foreach (var membership in memberships)
+            {
+                <MembershipCard Membership="membership" OnSelect="HandleSelect" />
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<Membership>? memberships;
+
+    [Parameter]
+    public EventCallback<Membership> OnMembershipSelected { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        memberships = await MembershipService.GetMembershipsAsync();
+    }
+
+    private async Task HandleSelect(Membership membership)
+    {
+        await OnMembershipSelected.InvokeAsync(membership);
+    }
+}
+

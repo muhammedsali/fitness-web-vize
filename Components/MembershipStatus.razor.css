@@ -1,0 +1,182 @@
+.membership-status {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #3b82f6;
+}
+
+.status-header {
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 2rem;
+}
+
+.membership-code {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.membership-code strong {
+    color: #3b82f6;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.status-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.info-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.info-value.warning {
+    color: #dc3545;
+}
+
+.countdown-section {
+    margin: 2rem 0;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+    animation: pulse 10s ease-in-out infinite;
+}
+
+.countdown-section h3 {
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    text-align: center;
+}
+
+.countdown-value {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.status-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-renew {
+    padding: 1.2rem 2.5rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-renew:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.no-membership {
+    text-align: center;
+    padding: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.no-membership p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .countdown {
+        gap: 1rem;
+    }
+
+    .countdown-value {
+        font-size: 2rem;
+    }
+
+    .status-info {
+        grid-template-columns: 1fr;
+    }
+}
+

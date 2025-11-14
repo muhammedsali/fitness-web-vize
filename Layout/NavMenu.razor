@@ -1,0 +1,109 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Spor Salonu Üyelik Sistemi</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Ana Sayfa
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="memberships">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Üyelik Planları
+            </NavLink>
+        </div>
+        @if (isAuthenticated)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="dashboard">
+                    <span class="bi bi-speedometer2" aria-hidden="true"></span> Dashboard
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <div class="nav-link user-info">
+                    <span class="bi bi-person-circle" aria-hidden="true"></span> @currentUser?.FullName
+                </div>
+            </div>
+            <div class="nav-item px-3">
+                <button class="nav-link btn-logout" @onclick="HandleLogout">
+                    <span class="bi bi-box-arrow-right" aria-hidden="true"></span> Çıkış Yap
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="login">
+                    <span class="bi bi-box-arrow-in-right" aria-hidden="true"></span> Giriş Yap
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="register">
+                    <span class="bi bi-person-plus" aria-hidden="true"></span> Üye Ol
+                </NavLink>
+            </div>
+        }
+    </nav>
+</div>
+
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool isAuthenticated = false;
+    private User? currentUser;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CheckAuthStatus();
+        Navigation.LocationChanged += OnLocationChanged;
+    }
+
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        await CheckAuthStatus();
+        StateHasChanged();
+    }
+
+    private async Task CheckAuthStatus()
+    {
+        isAuthenticated = await AuthService.IsAuthenticatedAsync();
+        if (isAuthenticated)
+        {
+            currentUser = await AuthService.GetCurrentUserAsync();
+        }
+        else
+        {
+            currentUser = null;
+        }
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task HandleLogout()
+    {
+        await AuthService.LogoutAsync();
+        await CheckAuthStatus();
+        StateHasChanged();
+        Navigation.NavigateTo("/", forceLoad: true);
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+    }
+}
